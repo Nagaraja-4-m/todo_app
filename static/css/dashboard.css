@@ -1,0 +1,120 @@
+
+.container
+{
+    margin: 4px 280px;
+}
+.subnavbar{
+    padding: 0px 10px;
+    background-color:grey;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    color: white;
+}
+a{
+    color:white;
+}
+
+.subnavbar ul
+{   
+    display: flex;
+    list-style-type: none;
+}
+
+.subnavbar ul li
+{
+    margin: 0px 12px;
+    font-weight: bold;
+
+}
+.subnavbar ul li a:hover
+{
+    color:blue;
+}
+
+.subnavbar h4
+{
+    text-transform:uppercase;
+    color:white;
+    font-weight: bold;
+}
+
+
+/*  SUB NAV BAR */
+.subcontainer{
+    background-color: rgba(207, 205, 205, 0.863);
+    padding: 10px 0px;
+}
+
+
+/* ADD TASK */
+.addtask{
+    visibility: hidden;
+
+
+}
+.add-task input{
+    display: block;
+    width: 376px;
+    padding:20px 10px;
+    margin-bottom: 20px;
+    border-style: solid ;
+    font-size:large;
+}
+
+/* TASKS  */
+.tasks
+{
+    padding: 10px 10px;
+}
+
+.task{
+    margin: 10px 10px;
+    padding:0px 10px 10px 10px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0px 0px 20px 10px silver;
+    background-color: rgb(216, 213, 213);
+    display: flex;
+}
+
+.task:hover{
+    box-shadow: 0px 0px 10px 5px rgb(99, 98, 98);
+}
+.title{
+    width: 90%;
+}
+.items{
+    width: 10%;
+}
+
+.items i{
+    padding:20px 0px;
+    color: black;
+    margin: 0px 10px;
+}
+
+.completed:hover{
+    color:green;
+}
+
+.delete:hover{
+    color: red;
+}
+
+#pending-tasks{
+    display: block;
+}
+#completed-tasks{
+    display: none;
+
+}
+#all-tasks{
+    display: none;
+
+}
+
+.no-tasks{
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}" >
+</head>
+
+<div class="container">
+    <div class="subnavbar">
+        <h4 id="sub-menu-title"> Pending tasks</h4>
+        <div class="menu">
+            <ul>
+                <li><a onclick="showAddTask()"> Add task</a></li>
+                <li><a onclick="showPendingTasks()" active> Pending tasks </a></li>
+                <li><a onclick="showCompletedTasks()"> Completed tasks</a></li>
+                <li><a onclick="showAllTasks()"> All tasks </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="subcontainer">
+        <div class="popup addtask" id="add-task">
+            <h2>Add new task</h2>
+            <form action="{% url 'add_new_task' %}" method="POST">
+                <input class="" type="text" name='title' placeholder="Task Details" required/>
+            <div class="buttons">
+                <button class="btn cancel" type="button" onclick="hideAddTask()">Cancel</button>
+                <button class="btn submit" type="submit" > Add task </button>
+            </div>  
+            </form>
+        </div>
+        
+        <div class="tasks" id="pending-tasks">
+            {% if not pending_tasks %}
+                <p class="no-tasks"> No Pending tasks</p>
+            {% else %}
+                {% for task in pending_tasks %}
+                <div class="task">
+                    <div class="title"><h4>{{ task.title }}</h4>
+                    </div>
+                    <div class="items"> 
+                        <a  href="{% url 'complete_task' task.id %}"><abbr title="Mark as completed"><i class="fa-solid fa-check completed"></i></abbr></a>
+                        <a  href="{% url 'delete_task' task.id %}" ><abbr title="Delete"><i class="fa-solid fa-trash delete"></i></abbr></a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="tasks" id="completed-tasks">
+            {% if not completed_tasks %}
+                <p class="no-tasks"> No tasks are completed</p>
+            {% else %}
+                {% for task in completed_tasks %}
+                <div class="task">
+                    <div class="title"><h4> {{ task.title }}</h4>
+                    </div>
+                    <div class="items">
+                        <a  href=""><abbr title="Mark as completed"><i>''</i></abbr></a>
+                        <a  href="" ><abbr title="Delete"><i class="fa-solid fa-trash delete"></i></abbr></a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        
+        <div class="tasks" id="all-tasks">
+            <!-- <p class="no-tasks"></p> -->
+            {% if not tasks %}
+                <p class="no-tasks"> No tasks </p>
+            {% else %}
+                {% for task in tasks %}
+                    <div class="task">
+                        <div class="title"><h4> {{ task.title }}</h4>
+                        </div>
+                        <!-- <div class="items">
+                            <a  href=""><abbr title="Mark as completed"><i></i></abbr></a>
+                            <a  href="" ><abbr title="Delete"><i class="fa-solid fa-trash delete"></i></abbr></a>
+                        </div> -->
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+    </div>  
+</div>
+
+<script>
+    var addtaskele=document.getElementById('add-task');
+    var pendingtasks=document.getElementById('pending-tasks');
+    var completedtasks=document.getElementById('completed-tasks');
+    var alltasks=document.getElementById('all-tasks');
+    var sub_menu_title=document.getElementById('sub-menu-title');
+
+    function showPendingTasks(){
+        completedtasks.style.display='none';
+        alltasks.style.display='none';
+        pendingtasks.style.display='block';
+        sub_menu_title.innerHTML='Pending Tasks'
+    }
+    function showCompletedTasks(){
+        alltasks.style.display='none';
+        pendingtasks.style.display='none';
+        completedtasks.style.display='block';
+        sub_menu_title.innerHTML='Completed Tasks'
+    }
+    function showAllTasks(){
+        completedtasks.style.display='none';
+        pendingtasks.style.display='none';
+        alltasks.style.display='block';
+        sub_menu_title.innerHTML='All tasks'
+    }
+       
+    function showAddTask(){
+        addtaskele.style.visibility='visible';
+    }
+    function hideAddTask(){
+        addtaskele.style.visibility='hidden';
+    }
+</script>
+{% endblock content %}
