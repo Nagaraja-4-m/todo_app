@@ -1,6 +1,8 @@
 # todo_app
 Simple to-do app
 
+<p> live on heroku: https://todo-django01.herokuapp.com/ </p>
+<br/>
 <h3> Technology used:</h3>
 <ul>
 <li> HTML </li>
